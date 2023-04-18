@@ -30,6 +30,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmGerenciamento = new javax.swing.JMenu();
         jmCliente = new javax.swing.JMenu();
@@ -53,18 +54,26 @@ public class Menu extends javax.swing.JFrame {
         setTitle("Livraria");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/livraria.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(168, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(162, 162, 162))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 458, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(102, 102, 102))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
@@ -72,6 +81,7 @@ public class Menu extends javax.swing.JFrame {
         jmGerenciamento.setMnemonic('g');
         jmGerenciamento.setText("Gerenciamento");
 
+        jmCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente.png"))); // NOI18N
         jmCliente.setMnemonic('c');
         jmCliente.setText("Cliente");
         jmCliente.setToolTipText("Cadastrar,Editar,Listar,Deletar Cliente");
@@ -118,6 +128,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmGerenciamento.add(jmCliente);
 
+        jmEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editora.png"))); // NOI18N
         jmEditora.setMnemonic('e');
         jmEditora.setText("Editora");
 
@@ -163,6 +174,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmGerenciamento.add(jmEditora);
 
+        jmLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/livro.png"))); // NOI18N
         jmLivro.setMnemonic('l');
         jmLivro.setText("Livro");
 
@@ -179,16 +191,31 @@ public class Menu extends javax.swing.JFrame {
         jmiLEditar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiLEditar.setMnemonic('e');
         jmiLEditar.setText("Editar");
+        jmiLEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiLEditarActionPerformed(evt);
+            }
+        });
         jmLivro.add(jmiLEditar);
 
         jmiLListar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiLListar.setMnemonic('l');
         jmiLListar.setText("Listar");
+        jmiLListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiLListarActionPerformed(evt);
+            }
+        });
         jmLivro.add(jmiLListar);
 
         jmiLDeletar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiLDeletar.setMnemonic('d');
         jmiLDeletar.setText("Deletar");
+        jmiLDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiLDeletarActionPerformed(evt);
+            }
+        });
         jmLivro.add(jmiLDeletar);
 
         jmGerenciamento.add(jmLivro);
@@ -215,7 +242,10 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiCCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCCadastrarActionPerformed
-        JOptionPane.showMessageDialog(this, "Cadastrar Cliente!");
+        //JOptionPane.showMessageDialog(this, "Cadastrar Cliente!");
+        jfCliente janelaCliente = new jfCliente();
+        janelaCliente.setVisible(true);
+        //if(janelaCliente.getName().equals("cliente")){}
     }//GEN-LAST:event_jmiCCadastrarActionPerformed
 
     private void jmiCEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCEditarActionPerformed
@@ -249,6 +279,18 @@ public class Menu extends javax.swing.JFrame {
     private void jmiEDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEDeletarActionPerformed
         JOptionPane.showMessageDialog(this, "Deletar Editora!");
     }//GEN-LAST:event_jmiEDeletarActionPerformed
+
+    private void jmiLEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLEditarActionPerformed
+        JOptionPane.showMessageDialog(this, "Editar Livro!");
+    }//GEN-LAST:event_jmiLEditarActionPerformed
+
+    private void jmiLListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLListarActionPerformed
+        JOptionPane.showMessageDialog(this, "Listar Livro!");
+    }//GEN-LAST:event_jmiLListarActionPerformed
+
+    private void jmiLDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLDeletarActionPerformed
+        JOptionPane.showMessageDialog(this, "Deletar Livro!");
+    }//GEN-LAST:event_jmiLDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,6 +328,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
