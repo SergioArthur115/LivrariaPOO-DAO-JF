@@ -33,21 +33,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmGerenciamento = new javax.swing.JMenu();
-        jmCliente = new javax.swing.JMenu();
-        jmiCCadastrar = new javax.swing.JMenuItem();
-        jmiCEditar = new javax.swing.JMenuItem();
-        jmiCListar = new javax.swing.JMenuItem();
-        jmiCDeletar = new javax.swing.JMenuItem();
-        jmEditora = new javax.swing.JMenu();
-        jmiECadastrar = new javax.swing.JMenuItem();
-        jmiEEditar = new javax.swing.JMenuItem();
-        jmiEListar = new javax.swing.JMenuItem();
-        jmiEDeletar = new javax.swing.JMenuItem();
-        jmLivro = new javax.swing.JMenu();
-        jmiLCadastrar = new javax.swing.JMenuItem();
-        jmiLEditar = new javax.swing.JMenuItem();
-        jmiLListar = new javax.swing.JMenuItem();
-        jmiLDeletar = new javax.swing.JMenuItem();
+        jmCliente = new javax.swing.JMenuItem();
+        jmEditora = new javax.swing.JMenuItem();
+        jmLivro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,143 +69,32 @@ public class Menu extends javax.swing.JFrame {
         jmGerenciamento.setMnemonic('g');
         jmGerenciamento.setText("Gerenciamento");
 
+        jmCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente.png"))); // NOI18N
         jmCliente.setMnemonic('c');
         jmCliente.setText("Cliente");
-        jmCliente.setToolTipText("Cadastrar,Editar,Listar,Deletar Cliente");
-
-        jmiCCadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiCCadastrar.setMnemonic('c');
-        jmiCCadastrar.setText("Cadastrar");
-        jmiCCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jmCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCCadastrarActionPerformed(evt);
+                jmClienteActionPerformed(evt);
             }
         });
-        jmCliente.add(jmiCCadastrar);
-
-        jmiCEditar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiCEditar.setMnemonic('e');
-        jmiCEditar.setText("Editar");
-        jmiCEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCEditarActionPerformed(evt);
-            }
-        });
-        jmCliente.add(jmiCEditar);
-
-        jmiCListar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiCListar.setMnemonic('l');
-        jmiCListar.setText("Listar");
-        jmiCListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCListarActionPerformed(evt);
-            }
-        });
-        jmCliente.add(jmiCListar);
-
-        jmiCDeletar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiCDeletar.setMnemonic('d');
-        jmiCDeletar.setText("Deletar");
-        jmiCDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCDeletarActionPerformed(evt);
-            }
-        });
-        jmCliente.add(jmiCDeletar);
-
         jmGerenciamento.add(jmCliente);
 
+        jmEditora.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editora.png"))); // NOI18N
         jmEditora.setMnemonic('e');
         jmEditora.setText("Editora");
-
-        jmiECadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiECadastrar.setMnemonic('c');
-        jmiECadastrar.setText("Cadastrar");
-        jmiECadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jmEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiECadastrarActionPerformed(evt);
+                jmEditoraActionPerformed(evt);
             }
         });
-        jmEditora.add(jmiECadastrar);
-
-        jmiEEditar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiEEditar.setMnemonic('e');
-        jmiEEditar.setText("Editar");
-        jmiEEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiEEditarActionPerformed(evt);
-            }
-        });
-        jmEditora.add(jmiEEditar);
-
-        jmiEListar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiEListar.setMnemonic('l');
-        jmiEListar.setText("Listar");
-        jmiEListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiEListarActionPerformed(evt);
-            }
-        });
-        jmEditora.add(jmiEListar);
-
-        jmiEDeletar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiEDeletar.setMnemonic('d');
-        jmiEDeletar.setText("Deletar");
-        jmiEDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiEDeletarActionPerformed(evt);
-            }
-        });
-        jmEditora.add(jmiEDeletar);
-
         jmGerenciamento.add(jmEditora);
 
+        jmLivro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/livro.png"))); // NOI18N
         jmLivro.setMnemonic('l');
         jmLivro.setText("Livro");
-
-        jmiLCadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiLCadastrar.setMnemonic('c');
-        jmiLCadastrar.setText("Cadastrar");
-        jmiLCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiLCadastrarActionPerformed(evt);
-            }
-        });
-        jmLivro.add(jmiLCadastrar);
-
-        jmiLEditar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiLEditar.setMnemonic('e');
-        jmiLEditar.setText("Editar");
-        jmiLEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiLEditarActionPerformed(evt);
-            }
-        });
-        jmLivro.add(jmiLEditar);
-
-        jmiLListar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiLListar.setMnemonic('l');
-        jmiLListar.setText("Listar");
-        jmiLListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiLListarActionPerformed(evt);
-            }
-        });
-        jmLivro.add(jmiLListar);
-
-        jmiLDeletar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmiLDeletar.setMnemonic('d');
-        jmiLDeletar.setText("Deletar");
-        jmiLDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiLDeletarActionPerformed(evt);
-            }
-        });
-        jmLivro.add(jmiLDeletar);
-
         jmGerenciamento.add(jmLivro);
 
         jMenuBar1.add(jmGerenciamento);
@@ -241,56 +118,15 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmiCCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCCadastrarActionPerformed
-        //JOptionPane.showMessageDialog(this, "Cadastrar Cliente!");
+    private void jmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmClienteActionPerformed
         jfCliente janelaCliente = new jfCliente();
         janelaCliente.setVisible(true);
-        //if(janelaCliente.getName().equals("cliente")){}
-    }//GEN-LAST:event_jmiCCadastrarActionPerformed
+    }//GEN-LAST:event_jmClienteActionPerformed
 
-    private void jmiCEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCEditarActionPerformed
-        JOptionPane.showMessageDialog(this, "Editar Cliente!");
-    }//GEN-LAST:event_jmiCEditarActionPerformed
-
-    private void jmiLCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLCadastrarActionPerformed
-        JOptionPane.showMessageDialog(this, "Cadastrar Livro!");
-    }//GEN-LAST:event_jmiLCadastrarActionPerformed
-
-    private void jmiCListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCListarActionPerformed
-        JOptionPane.showMessageDialog(this, "Listar Cliente!");
-    }//GEN-LAST:event_jmiCListarActionPerformed
-
-    private void jmiCDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCDeletarActionPerformed
-        JOptionPane.showMessageDialog(this, "Deletar Cliente!");
-    }//GEN-LAST:event_jmiCDeletarActionPerformed
-
-    private void jmiECadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiECadastrarActionPerformed
-        JOptionPane.showMessageDialog(this, "Cadastrar Editora!");
-    }//GEN-LAST:event_jmiECadastrarActionPerformed
-
-    private void jmiEEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEEditarActionPerformed
-        JOptionPane.showMessageDialog(this, "Editar Editora!");
-    }//GEN-LAST:event_jmiEEditarActionPerformed
-
-    private void jmiEListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEListarActionPerformed
-       JOptionPane.showMessageDialog(this, "Listar Editora!");
-    }//GEN-LAST:event_jmiEListarActionPerformed
-
-    private void jmiEDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEDeletarActionPerformed
-        JOptionPane.showMessageDialog(this, "Deletar Editora!");
-    }//GEN-LAST:event_jmiEDeletarActionPerformed
-
-    private void jmiLEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLEditarActionPerformed
-        JOptionPane.showMessageDialog(this, "Editar Livro!");
-    }//GEN-LAST:event_jmiLEditarActionPerformed
-
-    private void jmiLListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLListarActionPerformed
-        JOptionPane.showMessageDialog(this, "Listar Livro!");
-    }//GEN-LAST:event_jmiLListarActionPerformed
-
-    private void jmiLDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLDeletarActionPerformed
-        JOptionPane.showMessageDialog(this, "Deletar Livro!");
-    }//GEN-LAST:event_jmiLDeletarActionPerformed
+    private void jmEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEditoraActionPerformed
+        jfEditora janelaEditora = new jfEditora();
+        janelaEditora.setVisible(true);
+    }//GEN-LAST:event_jmEditoraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,21 +168,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenu jmCliente;
-    private javax.swing.JMenu jmEditora;
+    private javax.swing.JMenuItem jmCliente;
+    private javax.swing.JMenuItem jmEditora;
     private javax.swing.JMenu jmGerenciamento;
-    private javax.swing.JMenu jmLivro;
-    private javax.swing.JMenuItem jmiCCadastrar;
-    private javax.swing.JMenuItem jmiCDeletar;
-    private javax.swing.JMenuItem jmiCEditar;
-    private javax.swing.JMenuItem jmiCListar;
-    private javax.swing.JMenuItem jmiECadastrar;
-    private javax.swing.JMenuItem jmiEDeletar;
-    private javax.swing.JMenuItem jmiEEditar;
-    private javax.swing.JMenuItem jmiEListar;
-    private javax.swing.JMenuItem jmiLCadastrar;
-    private javax.swing.JMenuItem jmiLDeletar;
-    private javax.swing.JMenuItem jmiLEditar;
-    private javax.swing.JMenuItem jmiLListar;
+    private javax.swing.JMenuItem jmLivro;
     // End of variables declaration//GEN-END:variables
 }
