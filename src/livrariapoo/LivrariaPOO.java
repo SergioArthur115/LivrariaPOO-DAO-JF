@@ -23,6 +23,7 @@ import services.LivroServicos;
 import services.PedidoServicos;
 import services.ServicosFactory;
 import util.Validadores;
+import view.Menu;
 
 /**
  *
@@ -533,12 +534,10 @@ public class LivrariaPOO {
     }
 
     public static void main(String[] args) {
-        //cadCliente.mockClientes();
-        //cadEditora.mockEditoras();
-        //cadLivro.mockLivros();
-        //cadVendaLivro.mockVendaLivros();
+        Menu jfMenu = new Menu();
+        jfMenu.setVisible(true);
 
-        int opM;
+        /*int opM;
         do {
             menuP();
             opM = leiaNumGPT();
@@ -617,6 +616,6 @@ public class LivrariaPOO {
                     break;
             }
         } while (opM != 0);
-
+        */
     }
 }

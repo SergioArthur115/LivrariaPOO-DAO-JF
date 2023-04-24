@@ -64,8 +64,6 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(102, 102, 102))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
-
         jmGerenciamento.setMnemonic('g');
         jmGerenciamento.setText("Gerenciamento");
 
@@ -95,6 +93,11 @@ public class Menu extends javax.swing.JFrame {
         jmLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/livro.png"))); // NOI18N
         jmLivro.setMnemonic('l');
         jmLivro.setText("Livro");
+        jmLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmLivroActionPerformed(evt);
+            }
+        });
         jmGerenciamento.add(jmLivro);
 
         jMenuBar1.add(jmGerenciamento);
@@ -127,6 +130,11 @@ public class Menu extends javax.swing.JFrame {
         jfEditora janelaEditora = new jfEditora();
         janelaEditora.setVisible(true);
     }//GEN-LAST:event_jmEditoraActionPerformed
+
+    private void jmLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLivroActionPerformed
+        jfLivro janelaLivro = new jfLivro();
+        janelaLivro.setVisible(true);
+    }//GEN-LAST:event_jmLivroActionPerformed
 
     /**
      * @param args the command line arguments

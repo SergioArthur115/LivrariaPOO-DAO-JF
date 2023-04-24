@@ -6,6 +6,10 @@
 package view;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Cliente;
+import services.ClienteServicos;
+import services.ServicosFactory;
 import util.Validadores;
 
 /**
@@ -19,6 +23,39 @@ public class jfCliente extends javax.swing.JFrame {
      */
     public jfCliente() {
         initComponents();
+        addRowToTable();
+    }
+
+    public void validaInputs() {
+        if (jtfNomeCliente.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher nome!");
+            jtfNomeCliente.requestFocus();
+        } else if (jtfCPF.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher CPF!");
+            jtfCPF.requestFocus();
+        } else if (jtfEndereco.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher endereço!");
+            jtfEndereco.requestFocus();
+        } else if (jtfTelefone.getValue() == null) {
+            JOptionPane.showMessageDialog(this, "Preencher telefone!");
+            jtfTelefone.requestFocus();
+        }
+
+    }
+
+    public void addRowToTable() {
+        DefaultTableModel model = (DefaultTableModel) jtClientes.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        Object rowData[] = new Object[4];
+        ClienteServicos clienteS = ServicosFactory.getClienteServicos();
+        for (Cliente cliente : clienteS.getClientes()) {
+            rowData[0] = Validadores.imprimeCPF(cliente.getCpf());
+            rowData[1] = cliente.getNomeCliente();
+            rowData[2] = cliente.getTelefone();
+            rowData[3] = cliente.getEndereco();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -60,13 +97,13 @@ public class jfCliente extends javax.swing.JFrame {
         jLabel1.setText("Gerênciar Cliente");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome (*)");
 
-        jLabel3.setText("CPF:");
+        jLabel3.setText("CPF (*)");
 
-        jLabel4.setText("Endereço:");
+        jLabel4.setText("Endereço (*)");
 
-        jLabel5.setText("Telefone:");
+        jLabel5.setText("Telefone (*)");
 
         jtfEndereco.setToolTipText("Endereço completo");
 
@@ -168,7 +205,7 @@ public class jfCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
+                                .addComponent(jtfTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -246,9 +283,11 @@ public class jfCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfCPFKeyTyped
 
     private void jtfCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCPFFocusLost
-        if (!Validadores.isCPF(jtfCPF.getText())) {
-            JOptionPane.showMessageDialog(this, "CPF inválido!", "Erro CPF!", JOptionPane.ERROR_MESSAGE);
-            jtfCPF.requestFocus();
+        if (!jtfCPF.getText().equals("")) {
+            if (!Validadores.isCPF(jtfCPF.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF inválido!", "Erro CPF!", JOptionPane.ERROR_MESSAGE);
+                jtfCPF.requestFocus();
+            }
         }
     }//GEN-LAST:event_jtfCPFFocusLost
 

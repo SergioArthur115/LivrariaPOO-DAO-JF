@@ -66,7 +66,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jtfTelefone" pref="125" max="32767" attributes="0"/>
+                                  <Component id="jtfTelefone" pref="99" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -146,22 +146,22 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="text" type="java.lang.String" value="Nome (*)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CPF:"/>
+            <Property name="text" type="java.lang.String" value="CPF (*)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
+            <Property name="text" type="java.lang.String" value="Endere&#xe7;o (*)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Telefone:"/>
+            <Property name="text" type="java.lang.String" value="Telefone (*)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfEndereco">
