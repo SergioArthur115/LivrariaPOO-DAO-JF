@@ -86,6 +86,12 @@ public class jfEditora extends javax.swing.JFrame {
             }
         });
 
+        jtfGerente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfGerenteKeyTyped(evt);
+            }
+        });
+
         try {
             jtfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
@@ -272,6 +278,13 @@ public class jfEditora extends javax.swing.JFrame {
         jbLimpar.setEnabled(false);
         jtfCNPJ.setEnabled(false);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jtfGerenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfGerenteKeyTyped
+        String letras = "0123456789<>:?/~^}][{´`=+-_!|'\'@#$%¨&*()²³£¢¬§º°ª";
+        if (letras.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfGerenteKeyTyped
 
     /**
      * @param args the command line arguments
