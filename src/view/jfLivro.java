@@ -6,6 +6,10 @@
 package view;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Livro;
+import services.LivroServicos;
+import services.ServicosFactory;
 import util.Validadores;
 
 /**
@@ -19,20 +23,47 @@ public class jfLivro extends javax.swing.JFrame {
      */
     public jfLivro() {
         initComponents();
+        addRowToTable();
     }
 
     public void validaInputs() {
         if (jtfNomeLivro.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencher nome!");
+            JOptionPane.showMessageDialog(this, "Preencher titulo!");
             jtfNomeLivro.requestFocus();
         } else if (jtfISBN.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencher CNPJ!");
+            JOptionPane.showMessageDialog(this, "Preencher ISBN!");
             jtfISBN.requestFocus();
         } else if (jtfAutor.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencher endereço!");
+            JOptionPane.showMessageDialog(this, "Preencher autor!");
             jtfAutor.requestFocus();
+        } else if (jtfAssunto.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher assunto!");
+            jtfAssunto.requestFocus();
+        } else if (jtfEstoque.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher estoque!");
+            jtfEstoque.requestFocus();
+        } else if (jtfPreco.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher preço!");
+            jtfPreco.requestFocus();
         }
 
+    }
+
+    public void addRowToTable() {
+        DefaultTableModel model = (DefaultTableModel) jtLivro.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        Object rowData[] = new Object[6];
+        LivroServicos editoraS = ServicosFactory.getLivroServicos();
+        for (Livro livro : editoraS.getLivros()) {
+            rowData[0] = Validadores.imprimeCNPJ(livro.getIsbn());
+            rowData[1] = livro.getTitulo();
+            rowData[2] = livro.getAutor();
+            rowData[3] = livro.getAssunto();
+            rowData[4] = livro.getEstoque();
+            rowData[5] = livro.getPreco();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -62,7 +93,7 @@ public class jfLivro extends javax.swing.JFrame {
         jbCancelar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtLivro = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jtfCNPJ = new javax.swing.JTextField();
@@ -118,7 +149,7 @@ public class jfLivro extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtLivro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
             },
@@ -134,12 +165,12 @@ public class jfLivro extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtLivro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                jtLivroMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtLivro);
 
         jLabel7.setText("Estoque:");
 
@@ -281,12 +312,12 @@ public class jfLivro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jtLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtLivroMouseClicked
         jbEditar.setEnabled(true);
         jbSalvar.setText("Confirmar");
         jbLimpar.setEnabled(false);
         jtfISBN.setEnabled(false);
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jtLivroMouseClicked
 
     private void jtfAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAutorKeyTyped
         String letras = "0123456789<>:?/~^}][{´`=+-_!|'\'@#$%¨&*()²³£¢¬§º°ª";
@@ -344,11 +375,11 @@ public class jfLivro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
+    private javax.swing.JTable jtLivro;
     private javax.swing.JTextField jtfAssunto;
     private javax.swing.JTextField jtfAutor;
     private javax.swing.JTextField jtfCNPJ;

@@ -23,29 +23,36 @@ public class jfEditora extends javax.swing.JFrame {
      */
     public jfEditora() {
         initComponents();
+        this.setLocationRelativeTo(null);
         addRowToTable();
+        jbDeletar.setVisible(false);
     }
-
-    public void validaInputs() {
+    
+    public boolean validaInputs() {
         if (jtfNomeEditora.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher nome!");
             jtfNomeEditora.requestFocus();
+            return false;
         } else if (jtfCNPJ.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher CNPJ!");
             jtfCNPJ.requestFocus();
+            return false;
         } else if (jtfEndereco.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher endereço!");
             jtfEndereco.requestFocus();
+            return false;
         } else if (jtfTelefone.getValue() == null) {
             JOptionPane.showMessageDialog(this, "Preencher telefone!");
             jtfTelefone.requestFocus();
+            return false;
         } else if (jtfGerente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher gerente!");
             jtfGerente.requestFocus();
+            return false;
         }
-
+        return true;
     }
-
+    
     public void addRowToTable() {
         DefaultTableModel model = (DefaultTableModel) jtEditora.getModel();
         model.getDataVector().removeAllElements();
@@ -53,13 +60,22 @@ public class jfEditora extends javax.swing.JFrame {
         Object rowData[] = new Object[5];
         EditoraServicos editoraS = ServicosFactory.getEditoraServicos();
         for (Editora editora : editoraS.getEditoras()) {
-            rowData[0] = Validadores.imprimeCNPJ(editora.getCnpj());
+            rowData[0] = editora.getCnpj();
             rowData[1] = editora.getNomeEditora();
             rowData[2] = editora.getTelefone();
             rowData[3] = editora.getEndereco();
             rowData[4] = editora.getGerente();
             model.addRow(rowData);
         }
+    }
+    
+    public void limparCampos() {
+        jtfCNPJ.setText("");
+        jtfEndereco.setText("");
+        jtfNomeEditora.setText("");
+        jtfTelefone.setText("");
+        jtfGerente.setText("");
+        jtfNomeEditora.requestFocus();;
     }
 
     /**
@@ -91,6 +107,7 @@ public class jfEditora extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtEditora = new javax.swing.JTable();
+        jbDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -140,6 +157,11 @@ public class jfEditora extends javax.swing.JFrame {
         }
 
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         jbLimpar.setText("Limpar");
         jbLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +172,11 @@ public class jfEditora extends javax.swing.JFrame {
 
         jbEditar.setText("Editar");
         jbEditar.setEnabled(false);
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +207,13 @@ public class jfEditora extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtEditora);
+
+        jbDeletar.setText("Deletar");
+        jbDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,13 +246,14 @@ public class jfEditora extends javax.swing.JFrame {
                                 .addComponent(jtfTelefone))
                             .addComponent(jtfEndereco)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 42, Short.MAX_VALUE)
+                        .addComponent(jbDeletar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jbSalvar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbLimpar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbEditar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbCancelar)))
                 .addContainerGap())
         );
@@ -252,7 +287,8 @@ public class jfEditora extends javax.swing.JFrame {
                     .addComponent(jbSalvar)
                     .addComponent(jbLimpar)
                     .addComponent(jbEditar)
-                    .addComponent(jbCancelar))
+                    .addComponent(jbCancelar)
+                    .addComponent(jbDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -286,7 +322,7 @@ public class jfEditora extends javax.swing.JFrame {
     private void jtfCNPJKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCNPJKeyTyped
         String numChar = "0123456789";
         if (jtfCNPJ.getText().length() < 14) {
-
+            
             if (!numChar.contains(evt.getKeyChar() + "")) {
                 evt.consume();
             }
@@ -303,23 +339,26 @@ public class jfEditora extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfNomeEditoraKeyTyped
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
-        jtfCNPJ.setText("");
-        jtfEndereco.setText("");
-        jtfNomeEditora.setText("");
-        jtfTelefone.setText("");
-        jtfGerente.setText("");
-        jtfNomeEditora.requestFocus();;
+        limparCampos();
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        this.dispose();
+        limparCampos();
+        if (jbEditar.isEnabled() || jbDeletar.isVisible()) {
+            
+            jbSalvar.setText("Salvar");
+            jbLimpar.setEnabled(true);
+            jtfCNPJ.setEnabled(true);
+            jbDeletar.setVisible(false);
+            jbEditar.setEnabled(false);
+        } else {
+            this.dispose();
+        }
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jtEditoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEditoraMouseClicked
         jbEditar.setEnabled(true);
-        jbSalvar.setText("Confirmar");
-        jbLimpar.setEnabled(false);
-        jtfCNPJ.setEnabled(false);
+        jbDeletar.setVisible(true);
     }//GEN-LAST:event_jtEditoraMouseClicked
 
     private void jtfGerenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfGerenteKeyTyped
@@ -328,6 +367,48 @@ public class jfEditora extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtfGerenteKeyTyped
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        jbSalvar.setText("Confirmar");
+        jbLimpar.setEnabled(false);
+        jtfCNPJ.setEnabled(false);
+        jbDeletar.setVisible(false);
+    }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        if (validaInputs()) {
+            int idEditora = 0;
+            String nomeEditora = jtfNomeEditora.getText();
+            String cnpj = jtfCNPJ.getText();
+            String endereco = jtfEndereco.getText();
+            String telefone = jtfTelefone.getText();
+            String gerente = jtfGerente.getText();
+            EditoraServicos editoraS = ServicosFactory.getEditoraServicos();
+            Editora edi = new Editora(idEditora, nomeEditora, cnpj, endereco, telefone, gerente);
+            editoraS.cadEditora(edi);
+            limparCampos();
+            addRowToTable();
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
+        int linha, resposta;
+        String cnpj;
+        EditoraServicos editoraS = ServicosFactory.getEditoraServicos();
+        linha = jtEditora.getSelectedRow();
+        cnpj = (String) jtEditora.getValueAt(linha, 0);
+        Object[] resp = {"Sim", "Não"};
+        resposta = JOptionPane.showOptionDialog(this, "Deseja realmente deletar este CNPJ?", "Deletar", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
+        if (resposta == 0) {
+            editoraS.deletarEditora(cnpj);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Editora deletada com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "operação cancelada!");
+        }
+        jbDeletar.setVisible(false);
+        jbEditar.setEnabled(false);
+    }//GEN-LAST:event_jbDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,6 +457,7 @@ public class jfEditora extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbCancelar;
+    private javax.swing.JButton jbDeletar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
