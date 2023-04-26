@@ -23,47 +23,71 @@ public class jfLivro extends javax.swing.JFrame {
      */
     public jfLivro() {
         initComponents();
+        this.setLocationRelativeTo(null);
         addRowToTable();
+        jbDeletar.setVisible(false);
     }
 
-    public void validaInputs() {
+    public boolean validaInputs() {
         if (jtfNomeLivro.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher titulo!");
             jtfNomeLivro.requestFocus();
+            return false;
         } else if (jtfISBN.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher ISBN!");
             jtfISBN.requestFocus();
+            return false;
         } else if (jtfAutor.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher autor!");
             jtfAutor.requestFocus();
+            return false;
         } else if (jtfAssunto.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher assunto!");
             jtfAssunto.requestFocus();
+            return false;
         } else if (jtfEstoque.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher estoque!");
             jtfEstoque.requestFocus();
+            return false;
         } else if (jtfPreco.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher preço!");
             jtfPreco.requestFocus();
+            return false;
+        } else if (jtfCNPJ.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher CNPJ");
+            jtfCNPJ.requestFocus();
+            return false;
         }
-
+        return true;
     }
 
     public void addRowToTable() {
         DefaultTableModel model = (DefaultTableModel) jtLivro.getModel();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        Object rowData[] = new Object[6];
-        LivroServicos editoraS = ServicosFactory.getLivroServicos();
-        for (Livro livro : editoraS.getLivros()) {
-            rowData[0] = Validadores.imprimeCNPJ(livro.getIsbn());
+        Object rowData[] = new Object[7];
+        LivroServicos LivroS = ServicosFactory.getLivroServicos();
+        for (Livro livro : LivroS.getLivros()) {
+            rowData[0] = livro.getIsbn();
             rowData[1] = livro.getTitulo();
             rowData[2] = livro.getAutor();
             rowData[3] = livro.getAssunto();
             rowData[4] = livro.getEstoque();
             rowData[5] = livro.getPreco();
+            rowData[6] = livro.getIdEditora();
             model.addRow(rowData);
         }
+    }
+
+    public void limparCampos() {
+        jtfNomeLivro.setText("");
+        jtfISBN.setText("");
+        jtfAutor.setText("");
+        jtfAssunto.setText("");
+        jtfEstoque.setText("");
+        jtfPreco.setText("");
+        jtfCNPJ.setText("");
+        jtfNomeLivro.requestFocus();
     }
 
     /**
@@ -99,6 +123,7 @@ public class jfLivro extends javax.swing.JFrame {
         jtfCNPJ = new javax.swing.JTextField();
         jtfPreco = new javax.swing.JFormattedTextField();
         jtfEstoque = new javax.swing.JFormattedTextField();
+        jbDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -180,6 +205,8 @@ public class jfLivro extends javax.swing.JFrame {
 
         jtfEstoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
+        jbDeletar.setText("Deletar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,7 +216,7 @@ public class jfLivro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -218,16 +245,20 @@ public class jfLivro extends javax.swing.JFrame {
                                 .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jbDeletar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbSalvar)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbLimpar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jbEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbCancelar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbCancelar)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jtfEstoque))))
                 .addContainerGap())
         );
@@ -267,7 +298,8 @@ public class jfLivro extends javax.swing.JFrame {
                     .addComponent(jbSalvar)
                     .addComponent(jbLimpar)
                     .addComponent(jbEditar)
-                    .addComponent(jbCancelar))
+                    .addComponent(jbCancelar)
+                    .addComponent(jbDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -376,6 +408,7 @@ public class jfLivro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbCancelar;
+    private javax.swing.JButton jbDeletar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;

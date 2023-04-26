@@ -41,7 +41,7 @@ public class jfCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencher endereço!");
             jtfEndereco.requestFocus();
             return false;
-        } else if (jtfTelefone.getValue() == null) {
+        } else if (jtfTelefone.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher telefone!");
             jtfTelefone.requestFocus();
             return false;
@@ -69,7 +69,7 @@ public class jfCliente extends javax.swing.JFrame {
         jtfEndereco.setText("");
         jtfNomeCliente.setText("");
         jtfTelefone.setText("");
-        jtfNomeCliente.requestFocus();;
+        jtfNomeCliente.requestFocus();
     }
 
     /**
@@ -126,11 +126,6 @@ public class jfCliente extends javax.swing.JFrame {
         jtfCPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtfCPFFocusLost(evt);
-            }
-        });
-        jtfCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCPFActionPerformed(evt);
             }
         });
         jtfCPF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -301,10 +296,6 @@ public class jfCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCPFActionPerformed
-
     private void jtfCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCPFKeyTyped
         String numChar = "0123456789";
         if (jtfCPF.getText().length() < 11) {
@@ -362,6 +353,15 @@ public class jfCliente extends javax.swing.JFrame {
         jbLimpar.setEnabled(false);
         jtfCPF.setEnabled(false);
         jbDeletar.setVisible(false);
+
+        int linha;
+        linha = jtClientes.getSelectedRow();
+        jtfCPF.setText((String) jtClientes.getValueAt(linha, 0));
+        jtfNomeCliente.setText((String) jtClientes.getValueAt(linha, 1));
+        jtfTelefone.setText((String) jtClientes.getValueAt(linha, 2));
+        jtfEndereco.setText((String) jtClientes.getValueAt(linha, 3));
+        jtfNomeCliente.requestFocus();
+
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
@@ -374,9 +374,17 @@ public class jfCliente extends javax.swing.JFrame {
             String telefone = jtfTelefone.getText();
             ClienteServicos clienteS = ServicosFactory.getClienteServicos();
             Cliente cli = new Cliente(idCliente, nomeCliente, cpf, cnpj, endereco, telefone);
-            clienteS.cadCliente(cli);
+            
+            if(jbSalvar.getText().equals("Confirmar")){
+                clienteS.atualizarCliente(cli);
+            }else{
+                clienteS.cadCliente(cli);
+            }
             limparCampos();
             addRowToTable();
+            jbSalvar.setText("Salvar");
+            jbEditar.setEnabled(false);
+            jbLimpar.setEnabled(true);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 

@@ -27,7 +27,7 @@ public class jfEditora extends javax.swing.JFrame {
         addRowToTable();
         jbDeletar.setVisible(false);
     }
-    
+
     public boolean validaInputs() {
         if (jtfNomeEditora.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher nome!");
@@ -41,7 +41,7 @@ public class jfEditora extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencher endereço!");
             jtfEndereco.requestFocus();
             return false;
-        } else if (jtfTelefone.getValue() == null) {
+        } else if (jtfTelefone.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher telefone!");
             jtfTelefone.requestFocus();
             return false;
@@ -52,7 +52,7 @@ public class jfEditora extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     public void addRowToTable() {
         DefaultTableModel model = (DefaultTableModel) jtEditora.getModel();
         model.getDataVector().removeAllElements();
@@ -68,14 +68,14 @@ public class jfEditora extends javax.swing.JFrame {
             model.addRow(rowData);
         }
     }
-    
+
     public void limparCampos() {
         jtfCNPJ.setText("");
         jtfEndereco.setText("");
         jtfNomeEditora.setText("");
         jtfTelefone.setText("");
         jtfGerente.setText("");
-        jtfNomeEditora.requestFocus();;
+        jtfNomeEditora.requestFocus();
     }
 
     /**
@@ -322,7 +322,7 @@ public class jfEditora extends javax.swing.JFrame {
     private void jtfCNPJKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCNPJKeyTyped
         String numChar = "0123456789";
         if (jtfCNPJ.getText().length() < 14) {
-            
+
             if (!numChar.contains(evt.getKeyChar() + "")) {
                 evt.consume();
             }
@@ -345,7 +345,7 @@ public class jfEditora extends javax.swing.JFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         limparCampos();
         if (jbEditar.isEnabled() || jbDeletar.isVisible()) {
-            
+
             jbSalvar.setText("Salvar");
             jbLimpar.setEnabled(true);
             jtfCNPJ.setEnabled(true);
@@ -373,6 +373,16 @@ public class jfEditora extends javax.swing.JFrame {
         jbLimpar.setEnabled(false);
         jtfCNPJ.setEnabled(false);
         jbDeletar.setVisible(false);
+
+        int linha;
+        linha = jtEditora.getSelectedRow();
+        jtfCNPJ.setText((String) jtEditora.getValueAt(linha, 0));
+        jtfNomeEditora.setText((String) jtEditora.getValueAt(linha, 1));
+        jtfTelefone.setText((String) jtEditora.getValueAt(linha, 2));
+        jtfEndereco.setText((String) jtEditora.getValueAt(linha, 3));
+        jtfGerente.setText((String) jtEditora.getValueAt(linha, 4));
+        jtfNomeEditora.requestFocus();
+
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
@@ -385,9 +395,16 @@ public class jfEditora extends javax.swing.JFrame {
             String gerente = jtfGerente.getText();
             EditoraServicos editoraS = ServicosFactory.getEditoraServicos();
             Editora edi = new Editora(idEditora, nomeEditora, cnpj, endereco, telefone, gerente);
-            editoraS.cadEditora(edi);
+            if (jbSalvar.getText().equals("Confirmar")) {
+                editoraS.atualizarEditora(edi);
+            } else {
+                editoraS.cadEditora(edi);
+            }
             limparCampos();
             addRowToTable();
+            jbSalvar.setText("Salvar");
+            jbEditar.setEnabled(false);
+            jbLimpar.setEnabled(true);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
