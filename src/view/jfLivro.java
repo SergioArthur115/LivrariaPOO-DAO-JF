@@ -93,7 +93,7 @@ public class jfLivro extends javax.swing.JFrame {
     }
 
     public void num(java.awt.event.KeyEvent evt) {
-        String numChar = "0123456789";
+        String numChar = "0123456789.";
         if (!numChar.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
