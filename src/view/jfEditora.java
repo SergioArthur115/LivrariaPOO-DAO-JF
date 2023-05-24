@@ -117,15 +117,15 @@ public class jfEditora extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gerênciar Editora");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome(*):");
 
-        jLabel3.setText("CNPJ:");
+        jLabel3.setText("CNPJ(*):");
 
-        jLabel4.setText("Endereço:");
+        jLabel4.setText("Endereço(*):");
 
-        jLabel5.setText("Gerente:");
+        jLabel5.setText("Gerente(*):");
 
-        jLabel6.setText("Telefone:");
+        jLabel6.setText("Telefone(*):");
 
         jtfNomeEditora.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

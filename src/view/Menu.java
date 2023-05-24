@@ -104,6 +104,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jmGerenciamento);
 
         jMenu2.setText("Venda Livro");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu2MousePressed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -136,6 +141,10 @@ public class Menu extends javax.swing.JFrame {
         jfLivro janelaLivro = new jfLivro();
         janelaLivro.setVisible(true);
     }//GEN-LAST:event_jmLivroActionPerformed
+
+    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
+        JOptionPane.showMessageDialog(this, "Funcionalidade não implementada!");
+    }//GEN-LAST:event_jMenu2MousePressed
 
     /**
      * @param args the command line arguments

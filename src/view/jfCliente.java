@@ -312,6 +312,7 @@ public class jfCliente extends javax.swing.JFrame {
         if (!jtfCPF.getText().equals("")) {
             if (!Validadores.isCPF(jtfCPF.getText())) {
                 JOptionPane.showMessageDialog(this, "CPF inválido!", "Erro CPF!", JOptionPane.ERROR_MESSAGE);
+                jtfCPF.setText("");
                 jtfCPF.requestFocus();
             }
         }

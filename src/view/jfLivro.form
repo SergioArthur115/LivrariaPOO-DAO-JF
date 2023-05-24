@@ -176,27 +176,27 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Titulo:"/>
+            <Property name="text" type="java.lang.String" value="Titulo(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ISBN:"/>
+            <Property name="text" type="java.lang.String" value="ISBN(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Autor:"/>
+            <Property name="text" type="java.lang.String" value="Autor(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Assunto:"/>
+            <Property name="text" type="java.lang.String" value="Assunto(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pre&#xe7;o:"/>
+            <Property name="text" type="java.lang.String" value="Pre&#xe7;o(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfNomeLivro">
@@ -319,12 +319,12 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estoque:"/>
+            <Property name="text" type="java.lang.String" value="Estoque(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Editora:"/>
+            <Property name="text" type="java.lang.String" value="Editora(*):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfCNPJ">

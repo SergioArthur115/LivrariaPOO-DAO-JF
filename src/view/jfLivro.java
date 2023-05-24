@@ -142,15 +142,15 @@ public class jfLivro extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gerênciar Livro");
 
-        jLabel2.setText("Titulo:");
+        jLabel2.setText("Titulo(*):");
 
-        jLabel3.setText("ISBN:");
+        jLabel3.setText("ISBN(*):");
 
-        jLabel4.setText("Autor:");
+        jLabel4.setText("Autor(*):");
 
-        jLabel5.setText("Assunto:");
+        jLabel5.setText("Assunto(*):");
 
-        jLabel6.setText("Preço:");
+        jLabel6.setText("Preço(*):");
 
         jtfISBN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -216,9 +216,9 @@ public class jfLivro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtLivro);
 
-        jLabel7.setText("Estoque:");
+        jLabel7.setText("Estoque(*):");
 
-        jLabel8.setText("Editora:");
+        jLabel8.setText("Editora(*):");
 
         jtfCNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
